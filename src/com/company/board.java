@@ -7,9 +7,6 @@ import java.util.Scanner;
  */
 public class board {
 
-    public board()
-    {}
-
     public static int a;
 
     public static void makeBoard(char b[])
@@ -27,7 +24,7 @@ public class board {
             }
             if(j!=2) a+="\n-----------\n";
         }
-        System.out.print(a+"\n");
+        System.out.print(a+"\n\n");
     }
 
     public static void firstboard()
@@ -68,47 +65,119 @@ public class board {
         else return false;
     }
 
-    public static void game1(char [] c, char z1, char z2)
-    {
-        board.firstboard();
-        for(int i=0; i<5;i++)
-        {
-            board.playerMove(c, z1);
-            if(board.check(c, z1))
-            {
-                System.out.print("\nPlayer 1 wins");
-                break;
-            }
 
-            board.playerMove(c, z2);
-            if(board.check(c, z2))
+
+    public static void compmove(char[]c, char z1, char z2)
+    {
+        int e=board.win(c,z2);
+        int d=board.block(c,z1);
+        int f=board.trap(c,z1,z2);
+        int g=board.straight()
+
+
+        if(e==9)
+        {
+            if(d==9)
             {
-                System.out.println("\nPlayer 2 wins");
-                break;
+                if(f==9)
+                {
+                    if(c[4]==' ') c[4]=z2;
+                    else if(c[0]==' ') c[0]=z2;
+                    else if(c[2]==' ') c[2]=z2;
+                    else if(c[6]==' ') c[6]=z2;
+                    else if(c[8]==' ') c[8]=z2;
+                    else if(c[5]==' ') c[5]=z2;
+                    else if(c[1]==' ') c[1]=z2;
+                    else if(c[3]==' ') c[3]=z2;
+                    else if(c[7]==' ') c[7]=z2;
+                    board.makeBoard(c);
+                }
+                else
+                {
+                    c[f]=z2;
+                    board.makeBoard(c);
+                }
+            }
+            else
+            {
+                c[d]= z2;
+                board.makeBoard(c);
             }
         }
-    }
-
-    public static void game2(char [] c, char z1, char z2)
-    {
-        board.firstboard();
-        for(int i=0; i<5;i++)
+        else
         {
-            board.playerMove(c, z1);
-            if (board.check(c, z1))
-            {
-
-                System.out.print("\nPlayer 1 wins");
-                break;
-            }
-            board.compmove2(c,z1,z2);
+            c[e]=z2;
+            board.makeBoard(c);
         }
 
     }
 
-    public static void compmove2(char[]c, char z1, char z2)
+    public static int block(char[]c, char z1)
     {
-        if(c[])
+        if (((c[1]== z1 && c[2]==z1) || (c[3]==z1 && c[6]==z1) || (c[4]==z1 && c[8]==z1))&& c[0]==' ')      return 0;
+        else if (((c[0]== z1 && c[2]==z1) || (c[4]==z1 && c[7]==z1))&& c[1]==' ')                           return 1;
+        else if (((c[1]== z1 && c[0]==z1) || (c[5]==z1 && c[8]==z1) || (c[4]==z1 && c[6]==z1))&& c[2]==' ') return 2;
+        else if (((c[4]== z1 && c[5]==z1) || (c[0]==z1 && c[6]==z1))&& c[3]==' ')                           return 3;
+        else if (((c[0]== z1 && c[8]==z1) || (c[1]==z1 && c[7]==z1) ||
+                (c[2]==z1 && c[6]==z1)|| (c[3]==z1 && c[5]==z1))&& c[4]==' ')                               return 4;
+        else if (((c[3]== z1 && c[4]==z1) || (c[2]==z1 && c[8]==z1))&& c[5]==' ')                           return 5;
+        else if (((c[0]== z1 && c[3]==z1) || (c[2]==z1 && c[4]==z1) || (c[7]==z1 && c[8]==z1))&& c[6]==' ') return 6;
+        else if (((c[1]== z1 && c[4]==z1) || (c[6]==z1 && c[8]==z1))&& c[7]==' ')                           return 7;
+        else if (((c[2]== z1 && c[5]==z1) || (c[0]==z1 && c[4]==z1) || (c[6]==z1 && c[7]==z1))&& c[8]==' ') return 8;
+        else                                                                                                return 9;
+    }
+
+    public static int win(char[]c, char z1)
+    {
+        if (((c[1]== z1 && c[2]==z1) || (c[3]==z1 && c[6]==z1) || (c[4]==z1 && c[8]==z1))&& c[0]==' ')      return 0;
+        else if (((c[0]== z1 && c[2]==z1) || (c[4]==z1 && c[7]==z1))&& c[1]==' ')                           return 1;
+        else if (((c[1]== z1 && c[0]==z1) || (c[5]==z1 && c[8]==z1) || (c[4]==z1 && c[6]==z1))&& c[2]==' ') return 2;
+        else if (((c[4]== z1 && c[5]==z1) || (c[0]==z1 && c[6]==z1))&& c[3]==' ')                           return 3;
+        else if (((c[0]== z1 && c[8]==z1) || (c[1]==z1 && c[7]==z1) ||
+                (c[2]==z1 && c[6]==z1)|| (c[3]==z1 && c[5]==z1))&& c[4]==' ')                               return 4;
+        else if (((c[3]== z1 && c[4]==z1) || (c[2]==z1 && c[8]==z1))&& c[5]==' ')                           return 5;
+        else if (((c[0]== z1 && c[3]==z1) || (c[2]==z1 && c[4]==z1) || (c[7]==z1 && c[8]==z1))&& c[6]==' ') return 6;
+        else if (((c[1]== z1 && c[4]==z1) || (c[6]==z1 && c[8]==z1))&& c[7]==' ')                           return 7;
+        else if (((c[2]== z1 && c[5]==z1) || (c[0]==z1 && c[4]==z1) || (c[6]==z1 && c[7]==z1))&& c[8]==' ') return 8;
+        else                                                                                                return 9;
+    }
+
+    public static int trap(char[]c, char z1, char z2)
+    {
+        if (c[0]== z1 && c[8]==z1 && c[4]==z2)
+        {
+            if(c[1]==' ')return 1;
+            if(c[3]==' ')return 3;
+            if(c[5]==' ')return 5;
+            if(c[7]==' ')return 7;
+        }
+        if (c[2]== z1 && c[6]==z1 && c[4]==z2)
+        {
+            if(c[1]==' ')return 1;
+            if(c[3]==' ')return 3;
+            if(c[5]==' ')return 5;
+            if(c[7]==' ')return 7;
+        }
+        if(c[4]== z2 && c[6]==z1 && c[2]==' ')return 2;
+        if(c[4]== z2 && c[2]==z1 && c[6]==' ')return 6;
+        if(c[4]== z2 && c[0]==z1 && c[8]==' ')return 8;
+        if(c[0]== z2 && c[1]==z1 && c[6]==' ' && c[3]==' ')return 6;
+        return 9;
+    }
+
+    public void straight (char[]c,char z1)
+    {
+        if (((c[1]== z1 && c[2]==z1) || (c[3]==z1 && c[6]==z1) || (c[4]==z1 && c[8]==z1))&& c[0]==' ')      return 0;
+        else if (((c[0]== z1 && c[2]==z1) || (c[4]==z1 && c[7]==z1))&& c[1]==' ')                           return 1;
+        else if (((c[1]== z1 && c[0]==z1) || (c[5]==z1 && c[8]==z1) || (c[4]==z1 && c[6]==z1))&& c[2]==' ') return 2;
+        else if (((c[4]== z1 && c[5]==z1) || (c[0]==z1 && c[6]==z1))&& c[3]==' ')                           return 3;
+        else if (((c[0]== z1 && c[8]==z1) || (c[1]==z1 && c[7]==z1) ||
+                (c[2]==z1 && c[6]==z1)|| (c[3]==z1 && c[5]==z1))&& c[4]==' ')                               return 4;
+        else if (((c[3]== z1 && c[4]==z1) || (c[2]==z1 && c[8]==z1))&& c[5]==' ')                           return 5;
+        else if (((c[0]== z1 && c[3]==z1) || (c[2]==z1 && c[4]==z1) || (c[7]==z1 && c[8]==z1))&& c[6]==' ') return 6;
+        else if (((c[1]== z1 && c[4]==z1) || (c[6]==z1 && c[8]==z1))&& c[7]==' ')                           return 7;
+        else if (((c[2]== z1 && c[5]==z1) || (c[0]==z1 && c[4]==z1) || (c[6]==z1 && c[7]==z1))&& c[8]==' ') return 8;
+        else                                                                                                return 9;
     }
 
 }
