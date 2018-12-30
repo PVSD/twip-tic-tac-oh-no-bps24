@@ -2,7 +2,7 @@ package com.company;
 
 public class game {
 
-    public static void g1(char [] c, char z1, char z2)
+    private static void g1(char [] c, char z1, char z2)
     {
         board.firstboard();
         for(int i=0; i<4;i++)
@@ -10,20 +10,20 @@ public class game {
             board.playerMove(c, z1);
             if(board.check(c, z1))
             {
-                System.out.print("\nPlayer 1 wins");
+                System.out.print("\nPlayer 1 wins\n");
                 return;
             }
 
-            board.playerMove(c, z2);
+            board.playerMove2(c, z2);
             if(board.check(c, z2))
             {
-                System.out.println("\nPlayer 2 wins");
+                System.out.println("\nPlayer 2 wins\n");
                 return;
             }
         }
         board.playerMove(c, z1);
-        if(board.check(c, z1)) System.out.print("\nPlayer 1 wins");
-        else System.out.println("\nDraw");
+        if(board.check(c, z1)) System.out.print("\nPlayer 1 wins\n");
+        else System.out.println("\nDraw\n");
     }
 
     public static void g2(char [] c, char z1, char z2)
@@ -34,19 +34,19 @@ public class game {
             board.playerMove(c, z1);
             if (board.check(c, z1))
             {
-                System.out.print("\nPlayer 1 wins");
+                System.out.print("\nPlayer 1 wins\n");
                 return;
             }
             board.compmove(c,z1,z2);
             if(board.check(c,z2))
             {
-                System.out.println("\nComputer wins");
+                System.out.println("\nComputer wins\n");
                 return;
             }
         }
 
         board.playerMove(c, z1);
-        if (board.check(c, z1)) System.out.print("\nPlayer 1 wins");
+        if (board.check(c, z1)) System.out.print("\nPlayer 1 wins\n");
         else System.out.println("\nDraw");
     }
 
@@ -58,18 +58,41 @@ public class game {
             board.compmove(c,z1,z2);
             if(board.check(c,z2))
             {
-                System.out.println("\nComputer wins");
+                System.out.println("\nComputer wins\n");
                 return;
             }
             board.playerMove(c, z1);
             if (board.check(c, z1))
             {
-                System.out.print("\nPlayer 1 wins");
+                System.out.print("\nPlayer 1 wins\n");
                 return;
             }
         }
         board.compmove(c,z1,z2);
-        if(board.check(c,z2)) System.out.println("\nComputer wins");
-        else System.out.println("\nDraw");
+        if(board.check(c,z2)) System.out.println("\nComputer wins\n");
+        else System.out.println("\nDraw\n");
+    }
+
+    public static void g4(char [] c, char z1, char z2)
+    {
+        board.firstboard();
+        for(int i=0; i<4;i++)
+        {
+            board.compmove(c,z1,z2);
+            if(board.check(c,z2))
+            {
+                System.out.println("\nComputer 1 wins\n");
+                return;
+            }
+            board.compmove(c, z2, z1);
+            if (board.check(c, z1))
+            {
+                System.out.print("\nComputer 2 wins\n");
+                return;
+            }
+        }
+        board.compmove(c,z1,z2);
+        if(board.check(c,z2)) System.out.println("\nComputer 1 wins\n");
+        else System.out.println("\nDraw\n");
     }
 }

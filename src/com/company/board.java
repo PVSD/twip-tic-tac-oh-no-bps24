@@ -51,6 +51,25 @@ public class board {
         }
     }
 
+    public static void playerMove2(char [] c, char z)
+    {
+        Scanner kb = new Scanner(System.in);
+
+        while(true)
+        {
+            System.out.println("\nPlayer 2 enter a number");
+            a=kb.nextInt();
+
+            if(c[a]==' ')
+            {
+                c[a]=z;
+                board.makeBoard(c);
+                break;
+            }
+            else System.out.println("Enter an open region.");
+        }
+    }
+
     public static boolean check (char [] c, char z)
     {
         if (c[0] == z && c[3] == z && c[6] == z
@@ -72,7 +91,6 @@ public class board {
         int e=board.win(c,z2);
         int d=board.block(c,z1);
         int f=board.trap(c,z1,z2);
-        int g=board.straight()
 
 
         if(e==9)
@@ -165,19 +183,19 @@ public class board {
         return 9;
     }
 
-    public void straight (char[]c,char z1)
+    //public void straight (char[]c,char z1)
     {
-        if (((c[1]== z1 && c[2]==z1) || (c[3]==z1 && c[6]==z1) || (c[4]==z1 && c[8]==z1))&& c[0]==' ')      return 0;
-        else if (((c[0]== z1 && c[2]==z1) || (c[4]==z1 && c[7]==z1))&& c[1]==' ')                           return 1;
-        else if (((c[1]== z1 && c[0]==z1) || (c[5]==z1 && c[8]==z1) || (c[4]==z1 && c[6]==z1))&& c[2]==' ') return 2;
-        else if (((c[4]== z1 && c[5]==z1) || (c[0]==z1 && c[6]==z1))&& c[3]==' ')                           return 3;
-        else if (((c[0]== z1 && c[8]==z1) || (c[1]==z1 && c[7]==z1) ||
-                (c[2]==z1 && c[6]==z1)|| (c[3]==z1 && c[5]==z1))&& c[4]==' ')                               return 4;
-        else if (((c[3]== z1 && c[4]==z1) || (c[2]==z1 && c[8]==z1))&& c[5]==' ')                           return 5;
-        else if (((c[0]== z1 && c[3]==z1) || (c[2]==z1 && c[4]==z1) || (c[7]==z1 && c[8]==z1))&& c[6]==' ') return 6;
-        else if (((c[1]== z1 && c[4]==z1) || (c[6]==z1 && c[8]==z1))&& c[7]==' ')                           return 7;
-        else if (((c[2]== z1 && c[5]==z1) || (c[0]==z1 && c[4]==z1) || (c[6]==z1 && c[7]==z1))&& c[8]==' ') return 8;
-        else                                                                                                return 9;
+      //  if (((c[1]== z1 && c[2]==z1) || (c[3]==z1 && c[6]==z1) || (c[4]==z1 && c[8]==z1))&& c[0]==' ')      return 0;
+        //else if (((c[0]== z1 && c[2]==z1) || (c[4]==z1 && c[7]==z1))&& c[1]==' ')                           return 1;
+        //else if (((c[1]== z1 && c[0]==z1) || (c[5]==z1 && c[8]==z1) || (c[4]==z1 && c[6]==z1))&& c[2]==' ') return 2;
+      //  else if (((c[4]== z1 && c[5]==z1) || (c[0]==z1 && c[6]==z1))&& c[3]==' ')                           return 3;
+       // else if (((c[0]== z1 && c[8]==z1) || (c[1]==z1 && c[7]==z1) ||
+        //        (c[2]==z1 && c[6]==z1)|| (c[3]==z1 && c[5]==z1))&& c[4]==' ')                               return 4;
+       // else if (((c[3]== z1 && c[4]==z1) || (c[2]==z1 && c[8]==z1))&& c[5]==' ')                           return 5;
+       // else if (((c[0]== z1 && c[3]==z1) || (c[2]==z1 && c[4]==z1) || (c[7]==z1 && c[8]==z1))&& c[6]==' ') return 6;
+       // else if (((c[1]== z1 && c[4]==z1) || (c[6]==z1 && c[8]==z1))&& c[7]==' ')                           return 7;
+       // else if (((c[2]== z1 && c[5]==z1) || (c[0]==z1 && c[4]==z1) || (c[6]==z1 && c[7]==z1))&& c[8]==' ') return 8;
+       // else                                                                                                return 9;
     }
 
 }
